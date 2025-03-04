@@ -9,8 +9,6 @@ lerna-debug.log*
 
 node_modules
 src/components/
-src/pages/List/
-src/pages/Order/
 dist
 dist-ssr
 *.local
