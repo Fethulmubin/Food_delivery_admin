@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react'
 import './Add.css'
 import { assets } from '../../assets/assets'
 import axios from 'axios'
+import { toast } from 'react-toastify'
 
 const Add = () => {
     const url = 'http://localhost:9000'
@@ -32,7 +33,7 @@ const onSubmitHandler = async (e) => {
     const response = await axios.post(`${url}/api/food/add`, formData)
     console.log(response)
     if(response.data.success){
-        alert('Product added successfully')
+        // alert('Product added successfully')
         setData({
             name: '',
             description: '',
@@ -40,9 +41,12 @@ const onSubmitHandler = async (e) => {
             category: 'salad',
         })
         setImage(null)
+        toast.success('product successfully added')
+        // toast.success('product successfully added')
     }
     else{
-        alert('Product not added')
+        // alert('Product not added')
+        toast.error('something went wrong');
     }
 
 }
