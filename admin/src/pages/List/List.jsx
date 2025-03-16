@@ -1,15 +1,17 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './List.css'
 import { toast } from 'react-toastify'
 import axios from 'axios'
+import { StoreContext } from '../../context/StoreContext'
 
 const List = () => {
   const url = 'http://localhost:9000'
-  const [list, setList] = useState([])
+  const {list, setList} = useContext(StoreContext)
+  // const [list, setList] = useState([])
 
   const fetchList =  async ()=>{
     const response = await axios.get(`${url}/api/food/list`);
-    // console.log(response.data.foods)
+    console.log(response.data.foods)
     if(response.data.success){
         setList(response.data.foods);
     }
@@ -18,9 +20,12 @@ const List = () => {
     }
   }
   const removeFood = async (foodId) =>{
+    //it will optimize your time if you request to backend once
     const response = await axios.post(`${url}/api/food/remove`, {id:foodId})
-    await fetchList();
+   
     if(response.data.success){
+      // await fetchList();
+      setList(prev=>prev.filter(item=>item._id !== foodId))
       toast.success('Deleted successfully')
     }
     else{
@@ -28,8 +33,11 @@ const List = () => {
     }
     // console.log(foodId)
   }
+  console.log("list: ",list)
   useEffect(()=>{
+    if(list.length === 0){
     fetchList();
+    }
   },[list])
   return (
     <div className='list add flex-col' >

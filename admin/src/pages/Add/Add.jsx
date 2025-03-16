@@ -3,9 +3,12 @@ import './Add.css'
 import { assets } from '../../assets/assets'
 import axios from 'axios'
 import { toast } from 'react-toastify'
+import { useContext } from 'react'
+import { StoreContext } from '../../context/StoreContext'
 
 const Add = () => {
-    const url = 'http://localhost:9000'
+    const url = 'http://localhost:9000' 
+    const{list, setList} = useContext(StoreContext)
 const [image, setImage] = useState(null)
 const [ data , setData] = useState({
     name: '',
@@ -34,6 +37,7 @@ const onSubmitHandler = async (e) => {
     console.log(response)
     if(response.data.success){
         // alert('Product added successfully')
+        setList([...list, response.data.food]);
         setData({
             name: '',
             description: '',
