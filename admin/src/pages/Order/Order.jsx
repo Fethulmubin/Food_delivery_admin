@@ -8,6 +8,7 @@ import { assets } from '../../../../../Food_delivery/src/assets/assets/frontend_
 const Order = () => {
   const { url, orders, setOrders } = useContext(StoreContext)
 
+  //fetching all orders
   const fetchAllOrders = async () => {
     try {
       const response = await axios.get(`${url}api/order/list`)
@@ -21,6 +22,17 @@ const Order = () => {
       toast.error('Network error')
       console.error(err)
     }
+  }
+  //changing status
+  const statusHandler = async (e, orderId) =>{
+    const response = await axios.post(`${url}api/order/status`, {
+      orderId,
+      status: e.target.value
+    })
+    if(response.data.success){
+     await fetchAllOrders()
+    }
+
   }
 
   useEffect(() => {
@@ -56,10 +68,12 @@ const Order = () => {
                 order.address.zipcode} </p>
               </div>
               <p className='order-item-phone'> {order.address.phone}</p>
+              {order.payment ? <p className='paid'>Paid</p>:
+                 <p className='not-paid'>Not Paid</p>}
             </div>
             <p>Items : {order.items.length}</p>
             <p>${order.amount}</p>
-            <select >
+            <select onChange={(e) => statusHandler(e, order._id)} value={order.status} >
               <option value="Food Processing ">Food Processing</option>
               <option value="Out for delivery">Out for delivery</option>
               <option value="delivered">Delivered</option>

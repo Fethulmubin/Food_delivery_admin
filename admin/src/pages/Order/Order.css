@@ -22,12 +22,21 @@
 .order-item select{
     background-color: #ffe8e4;
     border: none;
-    width: max(10vw, 120px);
+    width: max(11vw, 120px);
     padding: 10px;
     outline: none;
     border-radius: 4px;
 }
-
+.paid, .not-paid{
+    font-size: 20px;
+    font-weight: 700;
+}
+.paid{
+    color: rgb(25, 221, 25);
+}
+.not-paid{
+    color: tomato;
+}
 @media (max-width:1000px){
     .order-item{
         font-size: 12px;
