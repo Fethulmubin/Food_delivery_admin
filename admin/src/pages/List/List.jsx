@@ -9,16 +9,16 @@ const List = () => {
   const {list, setList} = useContext(StoreContext)
   // const [list, setList] = useState([])
 
-  const fetchList =  async ()=>{
-    const response = await axios.get(`${url}/api/food/list`);
-    console.log(response.data.foods)
-    if(response.data.success){
-        setList(response.data.foods);
-    }
-    else{
-      toast.error('Error')
-    }
-  }
+  // const fetchList =  async ()=>{
+  //   const response = await axios.get(`${url}/api/food/list`);
+  //   console.log(response.data.foods)
+  //   if(response.data.success){
+  //       setList(response.data.foods);
+  //   }
+  //   else{
+  //     toast.error('Error')
+  //   }
+  // }
   const removeFood = async (foodId) =>{
     //it will optimize your time if you request to backend once
     const response = await axios.post(`${url}/api/food/remove`, {id:foodId})

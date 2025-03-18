@@ -9,20 +9,20 @@ const Order = () => {
   const { url, orders, setOrders } = useContext(StoreContext)
 
   //fetching all orders
-  const fetchAllOrders = async () => {
-    try {
-      const response = await axios.get(`${url}api/order/list`)
-      console.log(response)
-      if (response.data.success) {
-        setOrders(response.data.orders)
-      } else {
-        toast.error('Error fetching orders')
-      }
-    } catch (err) {
-      toast.error('Network error')
-      console.error(err)
-    }
-  }
+  // const fetchAllOrders = async () => {
+  //   try {
+  //     const response = await axios.get(`${url}api/order/list`)
+  //     console.log(response)
+  //     if (response.data.success) {
+  //       setOrders(response.data.orders)
+  //     } else {
+  //       toast.error('Error fetching orders')
+  //     }
+  //   } catch (err) {
+  //     toast.error('Network error')
+  //     console.error(err)
+  //   }
+  // }
   //changing status
   const statusHandler = async (e, orderId) =>{
     const response = await axios.post(`${url}api/order/status`, {
@@ -34,12 +34,11 @@ const Order = () => {
     }
 
   }
-
-  useEffect(() => {
-    if (orders.length === 0) {
-      fetchAllOrders()
-    }
-  }, [orders])
+  // useEffect(() => {
+  //   if (orders.length === 0) {
+  //     fetchAllOrders()
+  //   }
+  // }, [orders])
 
   return (
     <div className='order-list'>

@@ -9,6 +9,13 @@
     font-size: 14px;
     color: #505050;
 }
+.order-list h3{
+    display: flex;
+    justify-content: center;
+    font-size: 25px;
+    color: #505050;
+    margin-top: 20px;
+}
 .order-item-food, .order-item-name{
     font-weight: 600;
 }
