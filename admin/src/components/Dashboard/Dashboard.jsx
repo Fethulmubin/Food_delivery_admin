@@ -6,6 +6,7 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'rec
 import { AreaChart, Area } from 'recharts';
 import { StoreContext } from '../../context/StoreContext';
 import axios from 'axios';
+import Spinner from '../Spinner/Spinner';
 
 const Dashboard = () => {
     const [change, setChange] = useState(false)
