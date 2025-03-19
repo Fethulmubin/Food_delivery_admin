@@ -9,6 +9,7 @@ const StoreContextProvider = (props) => {
     const [orders, setOrders] = useState([])
     const [customer, setCustomer] = useState(0)
     const [revenue, setRevenue] = useState(0)
+    // const [loading, setLoading] = useState(false);
     // console.log(cartItems)
 
 

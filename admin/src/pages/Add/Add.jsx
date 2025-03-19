@@ -5,11 +5,13 @@ import axios from 'axios'
 import { toast } from 'react-toastify'
 import { useContext } from 'react'
 import { StoreContext } from '../../context/StoreContext'
+import Spinner from '../../components/Spinner/Spinner'
 
 const Add = () => {
     const url = 'http://localhost:9000' 
     const{list, setList} = useContext(StoreContext)
 const [image, setImage] = useState(null)
+const [loading, setLoading] = useState(false)
 const [ data , setData] = useState({
     name: '',
     description: '',
@@ -27,6 +29,7 @@ const onChangeHandler = (e) => {
 // },[data])
 const onSubmitHandler = async (e) => {
     e.preventDefault()
+    setLoading(true)
     const formData = new FormData()
     formData.append('name', data.name)
     formData.append('description', data.description)
@@ -44,6 +47,7 @@ const onSubmitHandler = async (e) => {
             price: '',
             category: 'salad',
         })
+        setLoading(false)
         setImage(null)
         toast.success('product successfully added')
         // toast.success('product successfully added')
@@ -96,7 +100,8 @@ const onSubmitHandler = async (e) => {
                     <input onChange={onChangeHandler} value={data.price} type="number" name='price' required placeholder='$20' />
                 </div>
             </div>    
-            <button type='submit' className='add-btn'>ADD</button>
+            
+           {!loading ? <button type='submit' className='add-btn'>ADD</button> : <button type='submit' className='add-btn'>Adding...</button> } 
         </form>
 
 

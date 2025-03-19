@@ -6,7 +6,7 @@ import { StoreContext } from '../../context/StoreContext'
 import { assets } from '../../../../../Food_delivery/src/assets/assets/frontend_assets/assets'
 
 const Order = () => {
-  const { url, orders, setOrders } = useContext(StoreContext)
+  const { url, orders, setOrders} = useContext(StoreContext)
 
   //fetching all orders
   // const fetchAllOrders = async () => {
@@ -25,12 +25,14 @@ const Order = () => {
   // }
   //changing status
   const statusHandler = async (e, orderId) =>{
+    setLoading(true)
     const response = await axios.post(`${url}api/order/status`, {
       orderId,
       status: e.target.value
     })
     if(response.data.success){
      await fetchAllOrders()
+     setLoading(false);
     }
 
   }

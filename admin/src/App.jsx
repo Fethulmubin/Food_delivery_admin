@@ -1,4 +1,4 @@
-import React,{ useEffect, useContext} from 'react'
+import React,{ useEffect, useContext, useState} from 'react'
 import Navbar from './components/Navbar/Navbar'
 import Sidebar from './components/Sidebar/Sidebar'
 import { Routes, Route } from 'react-router-dom'
@@ -14,9 +14,11 @@ import axios from 'axios'
 const App = () => {
 
     const { url, orders, setOrders, revenue, setRevenue , list, setList} = useContext(StoreContext)
+    // const [loading, setLoading] = useState(false);
   
     //fetching all orders
     const fetchAllOrders = async () => {
+    
       try {
         const response = await axios.get(`${url}api/order/list`)
         // console.log(response)
@@ -48,11 +50,14 @@ const App = () => {
           toast.error('Error')
         }
       }
-     useEffect(() => {
+     useEffect(() => {;
         if (orders.length === 0) {
+
           fetchAllOrders()
+          // setLoading(false)
         }
         if(list.length === 0){
+
           fetchList();
           }
           revenueHandler()
@@ -65,9 +70,9 @@ const App = () => {
     <div className="app-content">
       <Sidebar/>
       <Routes>
-        <Route path="/add" element={<Add />} />
+        <Route path="/add" element={<Add  />} />
         <Route path="/list" element={<List />} />
-        <Route path="/orders" element={<Order />} />
+        <Route path="/orders" element={<Order  />} />
         <Route path='/' element={<Dashboard/>}/>
       </Routes>
     </div>
