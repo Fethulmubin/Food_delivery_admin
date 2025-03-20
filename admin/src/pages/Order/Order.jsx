@@ -1,12 +1,14 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './Order.css'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 import { StoreContext } from '../../context/StoreContext'
 import { assets } from '../../../../../Food_delivery/src/assets/assets/frontend_assets/assets'
 
-const Order = () => {
+const Order = ({fetchAllOrders}) => {
   const { url, orders, setOrders} = useContext(StoreContext)
+  const [loading, setLoading] = useState(false)
+  const [change, setChange] = useState({})
 
   //fetching all orders
   // const fetchAllOrders = async () => {
@@ -25,6 +27,7 @@ const Order = () => {
   // }
   //changing status
   const statusHandler = async (e, orderId) =>{
+    setChange(orderId);
     setLoading(true)
     const response = await axios.post(`${url}api/order/status`, {
       orderId,
@@ -74,11 +77,13 @@ const Order = () => {
             </div>
             <p>Items : {order.items.length}</p>
             <p>${order.amount}</p>
-            <select onChange={(e) => statusHandler(e, order._id)} value={order.status} >
-              <option value="Food Processing ">Food Processing</option>
-              <option value="Out for delivery">Out for delivery</option>
-              <option value="delivered">Delivered</option>
-            </select>
+            {loading && change === order._id ? <div className="spinner"></div> :
+             <select onChange={(e) => statusHandler(e, order._id)} value={order.status} >
+             <option value="Food Processing ">Food Processing</option>
+             <option value="Out for delivery">Out for delivery</option>
+             <option value="delivered">Delivered</option>
+           </select>}
+           
           </div>
         ))}
       </div>
