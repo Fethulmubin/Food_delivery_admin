@@ -1,5 +1,4 @@
 import { createContext, useEffect, useState } from 'react'
-// import { food_list } from '../assets/assets/frontend_assets/assets'
 export const StoreContext = createContext(null)
 
 const StoreContextProvider = (props) => {
@@ -9,8 +8,7 @@ const StoreContextProvider = (props) => {
     const [orders, setOrders] = useState([])
     const [customer, setCustomer] = useState(0)
     const [revenue, setRevenue] = useState(0)
-    // const [loading, setLoading] = useState(false);
-    // console.log(cartItems)
+
 
 
 

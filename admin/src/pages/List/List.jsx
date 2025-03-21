@@ -28,15 +28,9 @@ const List = () => {
       selecttoDelete({})
       setLoading(false)
     }
-    // console.log(foodId)
+
   }
 
-  // console.log("list: ",list)
-  // useEffect(()=>{
-  //   if(list.length === 0){
-  //   fetchList();
-  //   }
-  // },[list])
   return (
     <div className='list add flex-col' >
       <p>All Foods list</p>

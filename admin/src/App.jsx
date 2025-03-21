@@ -22,15 +22,15 @@ const App = () => {
 
     try {
       const response = await axios.get(`${url}api/order/list`)
-      // console.log(response)
+   
       if (response.data.success) {
         setOrders(response.data.orders)
-        // console.log(orders)
+     
       } else {
-        // toast.error('Error fetching orders')
+ 
       }
     } catch (err) {
-      // toast.error('Network error')
+
       console.error(err)
     }
   }
@@ -48,14 +48,14 @@ const App = () => {
       setList(response.data.foods);
     }
     else {
-      // toast.error('Error')
+
     }
   }
   useEffect(() => {
     if (orders.length === 0) {
 
       fetchAllOrders()
-      // setLoading(false)
+
     }
     else if (list.length === 0) {
 

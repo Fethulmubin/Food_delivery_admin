@@ -5,7 +5,6 @@ import axios from 'axios'
 import { toast } from 'react-toastify'
 import { useContext } from 'react'
 import { StoreContext } from '../../context/StoreContext'
-import Spinner from '../../components/Spinner/Spinner'
 
 const Add = () => {
     const url = 'http://localhost:9000' 
@@ -24,9 +23,7 @@ const onChangeHandler = (e) => {
         [e.target.name]: e.target.value
     })
 }
-// useEffect(()=>{
-//         console.log(data)
-// },[data])
+
 const onSubmitHandler = async (e) => {
     e.preventDefault()
     setLoading(true)
@@ -39,7 +36,6 @@ const onSubmitHandler = async (e) => {
     const response = await axios.post(`${url}/api/food/add`, formData)
     console.log(response)
     if(response.data.success){
-        // alert('Product added successfully')
         setList([...list, response.data.food]);
         setData({
             name: '',
@@ -50,10 +46,10 @@ const onSubmitHandler = async (e) => {
         setLoading(false)
         setImage(null)
         toast.success('product successfully added')
-        // toast.success('product successfully added')
+ 
     }
     else{
-        // alert('Product not added')
+
         toast.error('something went wrong');
     }
 
@@ -101,7 +97,7 @@ const onSubmitHandler = async (e) => {
                 </div>
             </div>    
             
-           {!loading ? <button type='submit' className='add-btn'>ADD</button> : <button type='submit' className='add-btn'>Adding...</button> } 
+           {!loading ? <button type='submit' className='add-btn'>ADD</button> : <div className="spinner"> </div>  } 
         </form>
 
 

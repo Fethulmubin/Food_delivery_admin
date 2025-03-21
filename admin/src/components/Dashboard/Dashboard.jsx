@@ -10,14 +10,6 @@ import Spinner from '../Spinner/Spinner';
 
 const Dashboard = () => {
     const [change, setChange] = useState(false)
-    // const [mon , setMon] = useState(0) 
-    // const [tue , setTue] = useState(0)
-    // const [wed , seWed] = useState(0)
-    // const [thu , setThu] = useState(0)
-    // const [fri , setFri] = useState(0)
-    // const [sat , setSat] = useState(0)
-    // const [sun , setSun] = useState(0)
-    // const mon, tue, wed, thur, fri, sat, sun;
     const { customer, setCustomer, revenue, setRevenue, url, list, setList, orders, setOrders } = useContext(StoreContext)
     const [mon, setMon] = useState(0);
     const [tue, setTue] = useState(0);
@@ -73,13 +65,13 @@ const Dashboard = () => {
         setSun(tempSun);
     }
    
-    // console.log(date)
+  
     // fetching customers
     const fetchCustomers = async () => {
         const response = await axios.get(`${url}api/user/customers`)
         if (response.data.success) {
             setCustomer(response.data.users);
-            // console.log(customer)
+
         }
         else {
             setCustomer(0);

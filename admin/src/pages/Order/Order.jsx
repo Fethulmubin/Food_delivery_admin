@@ -10,22 +10,6 @@ const Order = ({fetchAllOrders}) => {
   const [loading, setLoading] = useState(false)
   const [change, setChange] = useState({})
 
-  //fetching all orders
-  // const fetchAllOrders = async () => {
-  //   try {
-  //     const response = await axios.get(`${url}api/order/list`)
-  //     console.log(response)
-  //     if (response.data.success) {
-  //       setOrders(response.data.orders)
-  //     } else {
-  //       toast.error('Error fetching orders')
-  //     }
-  //   } catch (err) {
-  //     toast.error('Network error')
-  //     console.error(err)
-  //   }
-  // }
-  //changing status
   const statusHandler = async (e, orderId) =>{
     setChange(orderId);
     setLoading(true)
@@ -39,11 +23,6 @@ const Order = ({fetchAllOrders}) => {
     }
 
   }
-  // useEffect(() => {
-  //   if (orders.length === 0) {
-  //     fetchAllOrders()
-  //   }
-  // }, [orders])
 
   return (
     <div className='order-list'>
