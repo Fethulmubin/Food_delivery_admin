@@ -19,44 +19,60 @@ const Dashboard = () => {
     // const [sun , setSun] = useState(0)
     // const mon, tue, wed, thur, fri, sat, sun;
     const { customer, setCustomer, revenue, setRevenue, url, list, setList, orders, setOrders } = useContext(StoreContext)
-    let mon = 0;
-    let tue = 0;
-    let wed = 0;
-    let thu = 0;
-    let fri = 0;
-    let sat = 0;
-    let sun = 0;
+    const [mon, setMon] = useState(0);
+    const [tue, setTue] = useState(0);
+    const [wed, setWed] = useState(0);
+    const [thu, setThu] = useState(0);
+    const [fri, setFri] = useState(0);
+    const [sat, setSat] = useState(0);
+    const [sun, setSun] = useState(0);
 
-    for (let i = 0; i < orders.length; i++) {
-        const date = new Date(orders[i].date).toLocaleDateString('en-US', { weekday: 'long' })
-        //    if(date === 'Saturday'){ 
-        //          mon += orders[i].amount
-        // }
-        switch (date) {
-            case 'Monday':
-                mon += orders[i].amount;
-                break;
-            case 'Tuesday':
-                tue += orders[i].amount;
-                break;
-            case 'Wednsday':
-                wed += orders[i].amount;
-                break;
-            case 'Thursday':
-                thu += orders[i].amount;
-                break;
-            case 'Friday':
-                fri += orders[i].amount;
-                break;
-            case 'Saturday':
-                sat += orders[i].amount;
-                break;
-            case 'Sunday':
-                sun += orders[i].amount;
-                break;
-           
+
+    const getDailyRevenue = () => {
+        let tempMon = 0;
+        let tempTue = 0;
+        let tempWed = 0;
+        let tempThu = 0;
+        let tempFri = 0;
+        let tempSat = 0;
+        let tempSun = 0;
+
+        for (let i = 0; i < orders.length; i++) {
+            const date = new Date(orders[i].date).toLocaleDateString('en-US', { weekday: 'long' });
+            switch (date) {
+                case 'Monday':
+                    tempMon += orders[i].amount;
+                    break;
+                case 'Tuesday':
+                    tempTue += orders[i].amount;
+                    break;
+                case 'Wednesday':
+                    tempWed += orders[i].amount;
+                    break;
+                case 'Thursday':
+                    tempThu += orders[i].amount;
+                    break;
+                case 'Friday':
+                    tempFri += orders[i].amount;
+                    break;
+                case 'Saturday':
+                    tempSat += orders[i].amount;
+                    break;
+                case 'Sunday':
+                    tempSun += orders[i].amount;
+                    break;
+            }
         }
+
+        setMon(tempMon);
+        setTue(tempTue);
+        setWed(tempWed);
+        setThu(tempThu);
+        setFri(tempFri);
+        setSat(tempSat);
+        setSun(tempSun);
     }
+   
     // console.log(date)
     // fetching customers
     const fetchCustomers = async () => {
@@ -70,7 +86,8 @@ const Dashboard = () => {
         }
     }
     useEffect(() => {
-        fetchCustomers()
+        fetchCustomers();
+        getDailyRevenue();
     }, [customer])
     const data = [
         { name: 'MON', Revenue: mon },

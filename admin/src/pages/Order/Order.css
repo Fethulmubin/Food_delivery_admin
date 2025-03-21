@@ -44,7 +44,7 @@
 .not-paid{
     color: tomato;
 }
-.spinner{
+.order-item .spinner{
     width: 30px;
     height: 30px;
     margin-right: 65px;
