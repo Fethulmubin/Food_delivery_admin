@@ -7,6 +7,7 @@ import Spinner from '../../components/Spinner/Spinner'
 
 const List = () => {
   const url = 'http://localhost:9000'
+  // const url = 'https://food-delivery-backend-c526.onrender.com'
   const { list, setList } = useContext(StoreContext);
   const [selecttoDelete, setSelecttoDelete] = useState({});
   const [loading, setLoading] = useState(false);
@@ -30,6 +31,7 @@ const List = () => {
     }
 
   }
+// const image_url = 'https://res.cloudinary.com/dezckzjzf/image/upload/v1234567890/uploads/'
 
   return (
     <div className='list add flex-col' >
@@ -45,7 +47,7 @@ const List = () => {
         {list.map((item, index) => {
           return (
             <div key={index} className='list-table-format'>
-              <img src={`${url}/images/` + item.image} alt={item.name} />
+              <img src={item.image} alt={item.name} />
               <p>{item.name}</p>
               <p>{item.category} </p>
               <p >${item.price}</p>

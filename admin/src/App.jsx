@@ -43,7 +43,7 @@ const App = () => {
   //
   const fetchList = async () => {
     const response = await axios.get(`${url}api/food/list`);
-    console.log(response.data.foods)
+    // console.log(response.data.foods)
     if (response.data.success) {
       setList(response.data.foods);
     }

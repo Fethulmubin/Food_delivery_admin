@@ -8,6 +8,7 @@ import { StoreContext } from '../../context/StoreContext'
 
 const Add = () => {
     const url = 'http://localhost:9000' 
+    // const url = 'https://food-delivery-backend-c526.onrender.com'
     const{list, setList} = useContext(StoreContext)
 const [image, setImage] = useState(null)
 const [loading, setLoading] = useState(false)
